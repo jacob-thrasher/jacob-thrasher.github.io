@@ -10,6 +10,7 @@
 html{
     font-size: 10px;
     font-family: 'Monsterrat', sans-serif;
+    scroll-behavior: smooth;
 }
 
 a{
@@ -39,6 +40,10 @@ p{
     letter-spacing: .05rem;
 }
 
+span {
+    color: var(--primary)
+}
+
 .section-title{
     font-size: 4rem;
     font-weight: 250;
@@ -48,6 +53,146 @@ p{
     letter-spacing: .2rem;
     text-align: center;
 }
+
+.brand h1{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: .2rem;
+}
+
+/* Header */
+#header{
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: auto;
+}
+
+#header .header{
+    min-height: 8vh;
+    background-color: rgba(31, 30, 30, 0.24);
+    transition: .3s ease background-color;
+}
+
+#header .nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 1300px;
+    padding: 0 10px;
+}
+
+#header .nav-list ul{
+    list-style: none;
+    position: absolute;
+    background-color: rgb(31, 30, 30);
+    width: 100vw;
+    height: 100vh;
+    left: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: .5s ease left;
+}
+
+#header .nav-list a{
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: .2rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 20px;
+    display: block;
+}
+
+#header .nav-list ul.active{
+    left: 0;
+}
+
+#header .nav-list ul a::after{
+    content: attr(data-after);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: rgba(240, 248, 255, 0.021);
+    font-size: 15rem;
+    letter-spacing: 50px;
+    z-index: -1;
+    transition: .3s ease letter-spacing;
+}
+
+#header .nav-list ul li:hover a{
+    color: var(--primary)
+    
+}
+
+#header .nav-list ul li:hover a::after{
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+    
+}
+
+#header .hamburger{
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    border: 3px solid white;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+    transform: scale(.8);
+    margin-right: 20px;
+}
+
+#header .hamburger .bar {
+    height: 2px;
+    width: 30px;
+    position: relative;
+    background-color: white;
+    z-index: -1;
+}
+
+#header .hamburger .bar::after,
+#header .hamburger .bar::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-color: white;
+    transition: .3s ease;
+    transition-property: top, bottom;
+}
+
+#header .hamburger .bar::after{
+    top: 8px;
+}
+#header .hamburger .bar::before{
+    bottom: 8px;
+}
+
+#header .hamburger.active .bar::before{
+    bottom: 0;
+}
+#header .hamburger.active .bar::after{
+    top: 0;
+}
+
 /* Hero Section */
 
 #hero{
@@ -138,7 +283,6 @@ p{
     background-color: var(--primary);
 }
 
-/* End of Hero section */
 
 /* What I do section */
 
@@ -150,6 +294,11 @@ p{
     max-width: 1500px;
     margin: 0 auto;
     padding: 100px 0;
+}
+
+#services .services-top{
+    width: 800px;
+    margin: 0 auto;
 }
 
 #services .services-bottom{
@@ -207,7 +356,6 @@ p{
     text-align: left;
 }
 
-/* End of what I do section  */
 
 /* Project */
 
@@ -345,6 +493,59 @@ p{
 
 /* End about me  */
 
+/* Footer  */
+
+#footer{
+    background-image: linear-gradient(60deg, #29323c 0%, #485562 100%);
+} 
+
+#footer .footer{
+    min-height: 200px;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 10px
+}
+
+#footer h1{
+    text-align: center;
+}
+
+#footer h2{
+    color: white;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#footer .social-icon{
+    display: flex;
+    margin-bottom: 30px;
+    align-items: flex-start; 
+    justify-content: center;    
+}
+
+#footer .social-item{
+    height: 50px;
+    width: 50px;
+    margin: 0 5px;
+}
+
+#footer .social-item img{
+    filter: grayscale(1);
+}
+
+#footer .social-item img:hover{
+    filter: grayscale(0);
+    transition: .3s ease filter;
+}
+
+/* #footer  */
+
+/* End footer  */
+
 /* Keyframes */
 @keyframes text_reveal_box{
     50%{
@@ -369,4 +570,108 @@ p{
         font-weight: 500px;
     }
 }
-/* End Keyframes */
+
+/* Media Query for Tablet */
+@media only screen and (min-width: 768px){
+    .cta{
+        font-size: 2.5rem;
+        padding: 20px 60px;
+    }
+    h1.section-title{
+        font-size: 6rem;
+    }
+    
+    /* Hero */
+    #hero h1{
+        font-size: 7rem;
+    }
+
+    /* Services */
+    #services .services-bottom .service-item{
+        flex-basis: 45%;
+        margin: 2.5%;
+    }
+
+    /* Projects */
+    #projects .project-item{
+        height: 400px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        flex-direction: row;
+
+    }
+
+    #projects .project-item:nth-child(even){
+        flex-direction: row-reverse;
+    }
+
+    #projects .all-projects .project-info{
+        height: 100%;
+    }
+
+    #projects .all-projects .project-img{
+        height: 100%;
+    }
+
+    /* About me */
+    #about .about{
+        flex-direction: row;
+    }
+
+    #about .col-left{
+        width: 600px;
+        height: 400px;
+        padding-left: 60px;
+    }
+
+    #about .about .col-left .about-img::after{
+        left: -45px;
+        top: 24px;
+        height: 98%;
+        width: 98%;
+        border: 10px solid var(--primary);
+    }
+
+    #about .col-right{
+        text-align: left;
+        padding: 30px;
+    }
+
+    #about .col-right h1{
+        text-align: left;
+    }
+}
+
+/* Media Query for Desktop View */
+@media only screen and (min-width: 1200px) {
+    /* Header */
+    #header .hamburger{
+        display: none;
+    }
+    #header .nav-list ul{
+        position: initial;
+        display: block;
+        height:  auto;
+        width: fit-content;
+        background-color: transparent;
+    }
+
+    #header .nav-list ul li{
+        display: inline-block;
+    }
+
+    #header .nav-list ul li a{
+        font-size: 1.8rem;
+    }
+
+    #header .nav-list ul a::after{
+        display: none;
+    }
+
+    /* Services */
+    #services .services-bottom .service-item{
+        flex-basis: 22%;
+        margin: 1.5%;
+    }
+}
